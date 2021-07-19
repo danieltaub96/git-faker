@@ -56,6 +56,7 @@ func BuildCommitHistory(u UserInput, repo *git.Repository) {
 	for i := 1; i <= commitsInDay; i++ {
 		randomDate, randateErr := util.Randate(startDate, endDate, u.Hours, u.WorkdaysOnly)
 		if randateErr != nil {
+
 			log.Errorf("Error while try to generate random dates")
 		}
 
