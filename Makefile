@@ -12,6 +12,6 @@ test-ci:
 	go install github.com/vakenbolt/go-test-report/
 	go test -json ./... | go-test-report --output out/faker_test_report.html --title "Faker-Tests"
 
-dockertest:
-	docker rmi -f git-faker-test-runner:latest || echo
-	docker build . -t git-faker-test-runner:latest -f Tests.Dockerfile
+update-pkg-cache:
+	GOPROXY=https://proxy.golang.org GO111MODULE=on \
+	 go list -m github.com/danieltaub96/git-faker@v0.0.1
