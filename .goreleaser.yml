@@ -1,8 +1,6 @@
-  <SNIP>
 nfpms:
   - id: packages # here we say that artifacts built with nfpm will be identified with `packages` string.
     file_name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-  <SNIP>
 publishers:
   - name: fury.io
     # by specifying `packages` id here goreleaser will only use this publisher
