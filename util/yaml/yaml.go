@@ -10,12 +10,15 @@ import (
 )
 
 func ReadDataFile(name string) (*object.DataFile, error) {
-	dataFile := GetDataFile()
+	dataFile := &object.DataFile{}
 
-	data, _ := ioutil.ReadFile(name)
-	err := yaml.Unmarshal(data, &dataFile)
-
+	data, err := ioutil.ReadFile(name)
 	if err != nil {
+		log.Errorf("Error while reading data file, maybe not exists")
+		return nil, err
+	}
+
+	if err := yaml.Unmarshal(data, &dataFile); err != nil {
 		log.Errorf("Error while parsing data file")
 		return nil, err
 	}

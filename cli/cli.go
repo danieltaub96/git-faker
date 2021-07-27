@@ -69,7 +69,7 @@ func InitCliApp(version string) {
 		},
 		&cli.StringFlag{
 			Name:  "data-file",
-			Value: "data-file ",
+			Value: "data-file",
 		},
 		&cli.BoolFlag{
 			Name:        "verbose",
@@ -139,7 +139,6 @@ func InitCliApp(version string) {
 			exit(1, err)
 		}
 		log.Infoln("Finished building commit history")
-
 
 		return nil
 	}
