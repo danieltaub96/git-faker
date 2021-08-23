@@ -65,7 +65,7 @@ func BuildCommitHistory(u UserInput, repo *git.Repository) error {
 
 	for i := 1; i <= u.Days; i++ {
 
-		randomDate, randateErr := Randate(startDate, endDate, u.WorkdaysOnly)
+		randomDate, randateErr := RandomDate(startDate, endDate, u.WorkdaysOnly)
 		if randateErr != nil {
 			log.Errorf("Error while try to generate random dates")
 		}
@@ -74,7 +74,7 @@ func BuildCommitHistory(u UserInput, repo *git.Repository) error {
 
 		for i := 1; i <= commitsInDay; i++ {
 
-			randomDateWithHours, randHoursErr := RandHours(randomDate, u.Hours)
+			randomDateWithHours, randHoursErr := RandomHours(randomDate, u.Hours)
 			if randHoursErr != nil {
 				log.Errorf("Error while try to generate random dates")
 			}

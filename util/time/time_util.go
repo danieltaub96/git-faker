@@ -19,11 +19,11 @@ func GenerateDateInBetween(startDate time.Time, endDate time.Time) time.Time {
 }
 
 func GenerateHoursInBetween(t time.Time, hours Range) time.Time {
-	min := t.Unix()
-	max := t.Unix() + (int64(time.Duration(hours.End-hours.Start) * time.Hour))
-	delta := max - min
+	timeMin := time.Date(t.Year(), t.Month(), t.Day(), hours.Start, 0, 0, t.Nanosecond(), t.Location()).Unix()
+	timeMax := time.Date(t.Year(), t.Month(), t.Day(), hours.End, 0, 0, t.Nanosecond(), t.Location()).Unix()
+	delta := timeMax - timeMin
 
-	sec := rand.Int63n(delta) + min
+	sec := rand.Int63n(delta) + timeMin
 
 	return time.Unix(sec, 0)
 }
@@ -36,7 +36,7 @@ func IsInHours(t time.Time, hours Range) bool {
 	return t.Hour() >= hours.Start && t.Hour() <= hours.End
 }
 
-func Randate(startDate time.Time, endDate time.Time, workdaysOnly bool) (time.Time, error) {
+func RandomDate(startDate time.Time, endDate time.Time, workdaysOnly bool) (time.Time, error) {
 	var randomDate = GenerateDateInBetween(startDate, endDate)
 	workdayRetryCounter := 1000
 
@@ -54,7 +54,7 @@ func Randate(startDate time.Time, endDate time.Time, workdaysOnly bool) (time.Ti
 	return randomDate, nil
 }
 
-func RandHours(t time.Time, hours Range) (time.Time, error) {
+func RandomHours(t time.Time, hours Range) (time.Time, error) {
 	var randomDate = GenerateHoursInBetween(t, hours)
 	hoursRetryCounter := 1000
 
